@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Velour — Fine Dining Karachi</title>
+<link rel="icon" type="image/png" href="download.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#08090f;
+  --navy2:#0f1120;
+  --charcoal:#161825;
+  --charcoal2:#1c1f30;
+  --gold:#c9a84c;
+  --gold2:#e8c96a;
+  --ivory:#f5f0e8;
+  --ivory2:#ece6da;
+  --muted:rgba(245,240,232,0.48);
+  --muted2:rgba(245,240,232,0.22);
+  --rose:#c4948e;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ivory);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
+
+/* ─── PAGE SYSTEM ─── */
+.page{display:none;min-height:100vh;animation:fadeIn 0.45s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── NAVBAR ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4rem;height:72px;
+  background:rgba(8,9,15,0.92);
+  border-bottom:1px solid rgba(201,168,76,0.1);
+  backdrop-filter:blur(12px);
+  transition:all 0.3s;
+}
+.nav-logo{
+  font-family:'Cormorant Garant',serif;
+  font-size:1.55rem;font-weight:400;letter-spacing:0.22em;
+  color:var(--gold);text-transform:uppercase;cursor:pointer;
+  text-decoration:none;flex-shrink:0;
+}
+.nav-center{
+  display:flex;gap:0;align-items:center;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.nav-link{
+  padding:0 1.4rem;height:72px;display:flex;align-items:center;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;border:none;background:none;
+  font-family:'Inter',sans-serif;font-weight:400;
+  border-bottom:2px solid transparent;
+  transition:color 0.25s,border-color 0.25s;
+  position:relative;
+}
+.nav-link:hover,.nav-link.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-btn{
+  padding:0.6rem 1.5rem;border:1px solid var(--gold);
+  color:var(--gold);background:transparent;cursor:pointer;
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all 0.3s;
+}
+.nav-btn:hover{background:var(--gold);color:var(--navy)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:1px;background:var(--gold);transition:all 0.3s}
+.mobile-menu{
+  display:none;position:fixed;top:72px;left:0;right:0;
+  background:rgba(8,9,15,0.98);z-index:998;
+  padding:1rem 0;border-bottom:1px solid rgba(201,168,76,0.1);
+}
+.mobile-menu.open{display:block}
+.mobile-nav-link{
+  display:block;width:100%;padding:1rem 2rem;
+  font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;background:none;border:none;
+  font-family:'Inter',sans-serif;text-align:left;
+  transition:color 0.2s,background 0.2s;
+}
+.mobile-nav-link:hover,.mobile-nav-link.active{color:var(--gold);background:rgba(201,168,76,0.05)}
+
+/* ─── SHARED ─── */
+.container{max-width:1180px;margin:0 auto;padding:0 2rem}
+.eyebrow{font-size:0.62rem;letter-spacing:0.42em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem}
+.display{font-family:'Cormorant Garant',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:300;line-height:1.1}
+.gold-line{width:48px;height:1px;background:var(--gold);opacity:0.6;margin:1.6rem 0}
+.gold-line.center{margin:1.6rem auto}
+.body-text{font-size:0.9rem;color:var(--muted);line-height:1.9}
+.btn-gold{
+  display:inline-block;padding:0.95rem 2.6rem;border:1px solid var(--gold);
+  color:var(--gold);background:transparent;cursor:pointer;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all 0.3s;text-decoration:none;
+}
+.btn-gold:hover{background:var(--gold);color:var(--navy)}
+.btn-solid{
+  display:inline-block;padding:0.95rem 2.6rem;
+  background:var(--gold);color:var(--navy);border:1px solid var(--gold);
+  cursor:pointer;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:opacity 0.25s;text-decoration:none;
+  font-weight:500;
+}
+.btn-solid:hover{opacity:0.88}
+
+/* ═══════════════════════════════════════
+   PAGE 1 — HOME
+═══════════════════════════════════════ */
+/* Hero */
+.hero{
+  height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 55%,rgba(201,168,76,0.07) 0%,transparent 70%),
+             linear-gradient(170deg,#0a0b12 0%,#08090f 50%,#0e0b18 100%);
+}
+.glow{
+  position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.09) 0%,transparent 68%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:breathe 5s ease-in-out infinite alternate;
+}
+@keyframes breathe{
+  from{transform:translate(-50%,-50%) scale(1);opacity:0.8}
+  to{transform:translate(-50%,-52%) scale(1.08);opacity:1}
+}
+.hero-frame{position:absolute;inset:2rem;border:1px solid rgba(201,168,76,0.14);pointer-events:none}
+.hero-frame::before,.hero-frame::after{
+  content:'';position:absolute;width:36px;height:36px;
+  border-color:var(--gold);border-style:solid;
+}
+.hero-frame::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.hero-frame::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.hero-inner{position:relative;z-index:2}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.8rem;
+  font-size:0.6rem;letter-spacing:0.42em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.6rem;
+}
+.hero-tag::before,.hero-tag::after{content:'';flex:1;width:28px;height:1px;background:var(--gold);opacity:0.5}
+.hero-title{
+  font-family:'Cormorant Garant',serif;
+  font-size:clamp(5rem,13vw,10rem);font-weight:300;line-height:0.92;
+  letter-spacing:0.06em;color:var(--ivory);
+}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-tagline{
+  margin-top:1.2rem;font-size:0.78rem;letter-spacing:0.26em;
+  text-transform:uppercase;color:var(--muted);
+}
+.hero-divider{width:56px;height:1px;background:var(--gold);margin:2rem auto;opacity:0.5}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);
+}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:drop 2s ease infinite}
+@keyframes drop{0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:top}}
+
+/* Home — Stats strip */
+.stats-strip{
+  background:var(--charcoal);border-top:1px solid rgba(201,168,76,0.12);
+  border-bottom:1px solid rgba(201,168,76,0.12);
+  padding:3rem 0;
+}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stat-item{padding:0 2rem;border-right:1px solid rgba(245,240,232,0.07)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Cormorant Garant',serif;font-size:2.8rem;color:var(--gold);font-weight:300;line-height:1}
+.stat-label{font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-top:0.4rem}
+
+/* Home — About teaser */
+.home-about{padding:8rem 0}
+.home-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.home-about-img{
+  aspect-ratio:4/5;background:var(--charcoal2);
+  border:1px solid rgba(201,168,76,0.12);
+  position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.home-about-img::before{
+  content:'';position:absolute;inset:14px;
+  border:1px solid rgba(201,168,76,0.08);pointer-events:none;
+}
+.img-letter{font-family:'Cormorant Garant',serif;font-size:9rem;color:rgba(201,168,76,0.08);font-style:italic}
+.home-about-text .body-text{margin-bottom:1rem}
+
+/* Home — Features */
+.home-features{background:var(--charcoal);padding:7rem 0}
+.features-header{text-align:center;margin-bottom:5rem}
+.features-header .gold-line{margin:1.4rem auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.feat-card{
+  background:var(--charcoal2);padding:3.5rem 2.5rem;
+  position:relative;overflow:hidden;transition:transform 0.3s;
+}
+.feat-card:hover{transform:translateY(-6px)}
+.feat-icon{font-size:1.8rem;margin-bottom:1.5rem;display:block}
+.feat-title{font-family:'Cormorant Garant',serif;font-size:1.5rem;margin-bottom:0.7rem}
+.feat-body{font-size:0.82rem;color:var(--muted);line-height:1.8}
+.feat-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  opacity:0;transition:opacity 0.35s;
+}
+.feat-card:hover::after{opacity:1}
+
+/* Home — CTA banner */
+.home-cta{
+  padding:8rem 0;text-align:center;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(201,168,76,0.06) 0%,transparent 70%);
+}
+.home-cta .display{margin-bottom:1.5rem}
+.home-cta .body-text{max-width:520px;margin:0 auto 2.5rem}
+
+/* ═══════════════════════════════════════
+   PAGE 2 — MENU
+═══════════════════════════════════════ */
+.page-hero{
+  padding:11rem 0 5rem;text-align:center;
+  background:linear-gradient(to bottom,var(--charcoal),var(--navy));
+  border-bottom:1px solid rgba(201,168,76,0.1);
+}
+.page-hero .display{font-size:clamp(3rem,7vw,5.5rem)}
+
+.menu-page{padding:6rem 0}
+.menu-tabs-wrap{
+  display:flex;justify-content:center;gap:0;
+  border-bottom:1px solid rgba(201,168,76,0.12);
+  margin-bottom:4rem;overflow-x:auto;
+}
+.menu-tab{
+  padding:1rem 2.2rem;background:none;border:none;border-bottom:2px solid transparent;
+  font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;
+  margin-bottom:-1px;white-space:nowrap;transition:color 0.25s,border-color 0.25s;
+}
+.menu-tab.active,.menu-tab:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.menu-panel{display:none}
+.menu-panel.active{display:block;animation:fadeIn 0.35s ease}
+.menu-intro{text-align:center;max-width:560px;margin:0 auto 3.5rem;font-size:0.85rem;color:var(--muted);line-height:1.8}
+.dishes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(245,240,232,0.05)}
+.dish{
+  background:var(--navy2);padding:2.2rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:start;gap:1.5rem;
+  transition:background 0.2s;
+}
+.dish:hover{background:rgba(201,168,76,0.04)}
+.dish-name{font-family:'Cormorant Garant',serif;font-size:1.2rem;margin-bottom:0.4rem}
+.dish-desc{font-size:0.75rem;color:var(--muted);line-height:1.65;max-width:270px}
+.dish-tag{
+  display:inline-block;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;
+  padding:0.2rem 0.5rem;border:1px solid rgba(201,168,76,0.3);color:var(--gold);
+  margin-top:0.5rem;
+}
+.dish-price{font-family:'Cormorant Garant',serif;font-size:1.15rem;color:var(--gold);white-space:nowrap;flex-shrink:0}
+
+/* Menu note */
+.menu-note{
+  text-align:center;margin-top:4rem;padding:2rem;
+  border:1px solid rgba(201,168,76,0.1);max-width:560px;margin:4rem auto 0;
+}
+.menu-note p{font-size:0.78rem;color:var(--muted);line-height:1.8}
+.menu-note span{color:var(--gold)}
+
+/* ═══════════════════════════════════════
+   PAGE 3 — ABOUT
+═══════════════════════════════════════ */
+.about-page{padding:0 0 6rem}
+.about-hero{
+  padding:11rem 0 7rem;
+  background:linear-gradient(160deg,var(--charcoal) 0%,var(--navy) 60%,var(--charcoal2) 100%);
+}
+.about-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:end}
+.about-quote{
+  font-family:'Cormorant Garant',serif;
+  font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:300;
+  line-height:1.2;font-style:italic;color:var(--ivory);
+}
+.about-quote span{color:var(--gold)}
+.about-hero-right{padding-bottom:1rem}
+.about-hero-right .body-text{margin-bottom:1rem}
+
+/* Story timeline */
+.story-section{padding:7rem 0;border-top:1px solid rgba(245,240,232,0.05)}
+.story-grid{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;margin-top:3rem}
+.story-sidebar .eyebrow{margin-bottom:2rem}
+.story-year-list{list-style:none}
+.story-year-list li{
+  padding:1rem 0;border-bottom:1px solid rgba(245,240,232,0.06);
+  font-family:'Cormorant Garant',serif;font-size:1.3rem;color:var(--muted);
+  cursor:pointer;transition:color 0.2s;display:flex;align-items:center;gap:0.8rem;
+}
+.story-year-list li::before{content:'';width:24px;height:1px;background:rgba(201,168,76,0.3);flex-shrink:0}
+.story-year-list li.active,.story-year-list li:hover{color:var(--gold)}
+.story-year-list li.active::before{background:var(--gold)}
+.story-entry{display:none;animation:fadeIn 0.35s ease}
+.story-entry.active{display:block}
+.story-entry-year{font-family:'Cormorant Garant',serif;font-size:4rem;color:rgba(201,168,76,0.15);line-height:1;margin-bottom:0.5rem}
+.story-entry-title{font-family:'Cormorant Garant',serif;font-size:1.8rem;margin-bottom:1rem}
+.story-entry-body{font-size:0.88rem;color:var(--muted);line-height:1.9}
+
+/* Team */
+.team-section{background:var(--charcoal);padding:7rem 0}
+.team-header{text-align:center;margin-bottom:5rem}
+.team-header .gold-line{margin:1.4rem auto}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.team-card{background:var(--charcoal2);padding:3rem 2.5rem;text-align:center}
+.team-avatar{
+  width:100px;height:100px;border-radius:50%;
+  background:var(--navy2);border:1px solid rgba(201,168,76,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garant',serif;font-size:2.4rem;color:rgba(201,168,76,0.3);
+  margin:0 auto 1.5rem;
+}
+.team-name{font-family:'Cormorant Garant',serif;font-size:1.4rem;margin-bottom:0.3rem}
+.team-role{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem}
+.team-bio{font-size:0.8rem;color:var(--muted);line-height:1.75}
+
+/* Values */
+.values-section{padding:7rem 0}
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:4rem;background:rgba(245,240,232,0.04)}
+.value-item{background:var(--navy2);padding:3.5rem 3rem}
+.value-title{font-family:'Cormorant Garant',serif;font-size:1.6rem;margin-bottom:0.8rem;color:var(--ivory)}
+.value-body{font-size:0.85rem;color:var(--muted);line-height:1.85}
+.value-num{font-family:'Cormorant Garant',serif;font-size:5rem;color:rgba(201,168,76,0.07);line-height:1;margin-bottom:0.5rem}
+
+/* ═══════════════════════════════════════
+   PAGE 4 — GALLERY
+═══════════════════════════════════════ */
+.gallery-page{padding:0 0 7rem}
+.gallery-hero{
+  padding:11rem 0 5rem;text-align:center;
+  background:linear-gradient(to bottom,var(--charcoal),var(--navy));
+}
+.gallery-grid-wrap{padding:5rem 0}
+.gallery-filter{
+  display:flex;justify-content:center;gap:0.5rem;margin-bottom:3.5rem;flex-wrap:wrap;
+}
+.gf-btn{
+  padding:0.6rem 1.5rem;background:none;
+  border:1px solid rgba(245,240,232,0.1);
+  color:var(--muted);font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.25s;
+}
+.gf-btn.active,.gf-btn:hover{border-color:var(--gold);color:var(--gold)}
+.gallery-masonry{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3px;
+}
+.g-item{
+  background:var(--charcoal2);position:relative;overflow:hidden;
+  cursor:pointer;
+}
+.g-item:nth-child(4n+1){grid-row:span 2}
+.g-item-inner{
+  width:100%;aspect-ratio:1;background:var(--charcoal2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garant',serif;color:rgba(201,168,76,0.1);
+  font-size:4rem;position:relative;
+  transition:transform 0.5s;
+}
+.g-item:nth-child(4n+1) .g-item-inner{aspect-ratio:1/2}
+.g-item:hover .g-item-inner{transform:scale(1.05)}
+.g-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,9,15,0.85) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.35s;
+  display:flex;align-items:flex-end;padding:1.5rem;
+}
+.g-item:hover .g-overlay{opacity:1}
+.g-label{font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ivory)}
+.g-cat{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;inset:0;background:rgba(8,9,15,0.97);z-index:9999;
+  display:none;align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex}
+.lb-content{
+  text-align:center;max-width:700px;padding:2rem;
+}
+.lb-visual{
+  width:100%;max-width:600px;aspect-ratio:4/3;background:var(--charcoal2);
+  border:1px solid rgba(201,168,76,0.15);margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garant',serif;font-size:8rem;color:rgba(201,168,76,0.12);
+}
+.lb-title{font-family:'Cormorant Garant',serif;font-size:1.6rem;margin-top:1.5rem}
+.lb-sub{font-size:0.75rem;color:var(--muted);margin-top:0.4rem;letter-spacing:0.15em}
+.lb-close{
+  position:absolute;top:2rem;right:2rem;background:none;border:1px solid rgba(201,168,76,0.3);
+  color:var(--gold);font-size:1.2rem;width:42px;height:42px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background 0.2s;
+}
+.lb-close:hover{background:rgba(201,168,76,0.15)}
+
+/* ═══════════════════════════════════════
+   PAGE 5 — RESERVE
+═══════════════════════════════════════ */
+.reserve-page{padding:0 0 7rem}
+.reserve-hero{
+  padding:11rem 0 5rem;
+  background:linear-gradient(160deg,var(--charcoal2) 0%,var(--navy) 100%);
+  text-align:center;
+}
+.reserve-layout{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;
+  align-items:start;padding:6rem 0;
+}
+/* Info side */
+.reserve-info .body-text{margin-bottom:1.2rem}
+.info-items{margin-top:2.5rem;display:flex;flex-direction:column;gap:0}
+.info-item{
+  padding:1.5rem 0;border-bottom:1px solid rgba(245,240,232,0.07);
+  display:flex;align-items:start;gap:1.2rem;
+}
+.info-icon{font-size:1.1rem;flex-shrink:0;margin-top:0.1rem}
+.info-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem}
+.info-val{font-size:0.85rem;color:var(--ivory);line-height:1.6}
+.info-val span{color:var(--muted);font-size:0.78rem}
+
+/* Form */
+.res-card{
+  background:var(--charcoal);border:1px solid rgba(201,168,76,0.12);
+  padding:3rem;
+}
+.res-card-title{
+  font-family:'Cormorant Garant',serif;font-size:1.8rem;margin-bottom:2rem;
+  padding-bottom:1.5rem;border-bottom:1px solid rgba(201,168,76,0.1);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px;background:rgba(245,240,232,0.05)}
+.form-row.single{grid-template-columns:1fr}
+.form-group{background:var(--charcoal);padding:0}
+.form-field{
+  width:100%;padding:1.1rem 1.3rem;
+  background:var(--charcoal2);border:none;outline:none;
+  color:var(--ivory);font-family:'Inter',sans-serif;font-size:0.82rem;
+  font-weight:300;border-bottom:1px solid rgba(201,168,76,0.08);
+  transition:border-color 0.25s,background 0.25s;
+}
+.form-field:focus{background:rgba(201,168,76,0.04);border-bottom-color:var(--gold)}
+.form-field::placeholder{color:var(--muted)}
+.form-field option{background:var(--charcoal2)}
+.form-label{
+  display:block;font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);padding:0.9rem 1.3rem 0;
+}
+.form-submit{
+  width:100%;padding:1.3rem;margin-top:1px;
+  background:var(--gold);color:var(--navy);border:none;cursor:pointer;
+  font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;font-weight:500;
+  transition:opacity 0.25s;
+}
+.form-submit:hover{opacity:0.87}
+.form-note{font-size:0.7rem;color:var(--muted);text-align:center;margin-top:1.2rem;line-height:1.6}
+.form-note a{color:var(--gold);text-decoration:none}
+
+/* Private dining strip */
+.private-strip{
+  background:var(--charcoal);border-top:1px solid rgba(201,168,76,0.1);
+  padding:5rem 0;margin-top:3rem;
+}
+.private-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
+.private-item{background:var(--charcoal2);padding:2.5rem 2rem;text-align:center}
+.private-item-num{font-family:'Cormorant Garant',serif;font-size:2.5rem;color:var(--gold);line-height:1;margin-bottom:0.3rem}
+.private-item-label{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted)}
+
+/* Success modal */
+.success-modal{
+  position:fixed;inset:0;background:rgba(8,9,15,0.9);z-index:9999;
+  display:none;align-items:center;justify-content:center;
+}
+.success-modal.open{display:flex}
+.success-box{
+  background:var(--charcoal);border:1px solid rgba(201,168,76,0.2);
+  padding:4rem;text-align:center;max-width:460px;width:90%;
+}
+.success-icon{font-size:2.5rem;margin-bottom:1.5rem}
+.success-title{font-family:'Cormorant Garant',serif;font-size:2rem;margin-bottom:0.8rem}
+.success-body{font-size:0.85rem;color:var(--muted);line-height:1.75;margin-bottom:2rem}
+.success-close{cursor:pointer}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--charcoal);border-top:1px solid rgba(201,168,76,0.1);
+  padding:5rem 0 3rem;
+}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+.footer-brand .nav-logo{display:block;margin-bottom:1rem;font-size:1.4rem}
+.footer-brand p{font-size:0.8rem;color:var(--muted);line-height:1.8;max-width:240px}
+.footer-col-title{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.footer-links a{font-size:0.8rem;color:var(--muted);text-decoration:none;cursor:pointer;transition:color 0.2s}
+.footer-links a:hover{color:var(--ivory)}
+.footer-contact p{font-size:0.8rem;color:var(--muted);line-height:1.9}
+.footer-bottom{
+  border-top:1px solid rgba(245,240,232,0.06);padding-top:2rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-copy{font-size:0.65rem;color:rgba(245,240,232,0.28);letter-spacing:0.1em}
+.footer-socials{display:flex;gap:1rem}
+.footer-socials a{
+  width:34px;height:34px;border:1px solid rgba(201,168,76,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;color:var(--muted);text-decoration:none;
+  transition:all 0.25s;
+}
+.footer-socials a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-center{display:none}
+  .nav-right .nav-btn{display:none}
+  .hamburger{display:flex}
+  .home-about-grid,.about-hero-grid,.reserve-layout,.team-grid,
+  .footer-grid,.private-inner,.about-hero-grid{grid-template-columns:1fr;gap:3rem}
+  .features-grid,.story-grid,.values-grid,.gallery-masonry,
+  .dishes-grid{grid-template-columns:1fr}
+  .g-item:nth-child(4n+1){grid-row:span 1}
+  .g-item:nth-child(4n+1) .g-item-inner{aspect-ratio:1}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(245,240,232,0.07);padding:1.5rem}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(245,240,232,0.07)}
+  section,.hero-page,.menu-page,.gallery-grid-wrap,.reserve-layout,.about-page,.values-section,.story-section,.team-section{padding-left:1.5rem;padding-right:1.5rem}
+  .container{padding:0 1.5rem}
+  .hero-title{font-size:clamp(4rem,14vw,7rem)}
+  .hero-frame{inset:1rem}
+  .form-row{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .story-grid{grid-template-columns:1fr}
+  .res-card{padding:2rem 1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .glow,.scroll-bar{animation:none}
+  .page{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <span class="nav-logo" onclick="showPage('home')">Velour</span>
+  <div class="nav-center">
+    <button class="nav-link active" onclick="showPage('home')" data-page="home">Home</button>
+    <button class="nav-link" onclick="showPage('menu')" data-page="menu">Menu</button>
+    <button class="nav-link" onclick="showPage('about')" data-page="about">About</button>
+    <button class="nav-link" onclick="showPage('gallery')" data-page="gallery">Gallery</button>
+    <button class="nav-link" onclick="showPage('reserve')" data-page="reserve">Reserve</button>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="showPage('reserve')">Book a Table</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-nav-link active" onclick="showPage('home');closeMobile()" data-mpage="home">Home</button>
+  <button class="mobile-nav-link" onclick="showPage('menu');closeMobile()" data-mpage="menu">Menu</button>
+  <button class="mobile-nav-link" onclick="showPage('about');closeMobile()" data-mpage="about">About</button>
+  <button class="mobile-nav-link" onclick="showPage('gallery');closeMobile()" data-mpage="gallery">Gallery</button>
+  <button class="mobile-nav-link" onclick="showPage('reserve');closeMobile()" data-mpage="reserve">Reserve</button>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 — HOME
+═══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="glow"></div>
+    <div class="hero-frame"></div>
+    <div class="hero-inner">
+      <div class="hero-tag">Clifton, Karachi &nbsp; 2024</div>
+      <h1 class="hero-title">Vel<em>our</em></h1>
+      <p class="hero-tagline">Where every dish becomes a memory</p>
+      <div class="hero-divider"></div>
+      <div class="hero-actions">
+        <button class="btn-gold" onclick="showPage('menu')">View Menu</button>
+        <button class="btn-solid" onclick="showPage('reserve')">Reserve a Table</button>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-bar"></div><span>Scroll</span></div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item"><div class="stat-num">40</div><div class="stat-label">Covers per Evening</div></div>
+        <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Years of Excellence</div></div>
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Michelin Recognitions</div></div>
+        <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Master Chefs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About teaser -->
+  <div class="home-about">
+    <div class="container">
+      <div class="home-about-grid">
+        <div class="home-about-img"><span class="img-letter">V</span></div>
+        <div class="home-about-text">
+          <p class="eyebrow">Our Philosophy</p>
+          <h2 class="display">Crafted with patience,<br>served with purpose</h2>
+          <div class="gold-line"></div>
+          <p class="body-text">Velour was born from a single conviction — that a great meal is never just food. It is atmosphere, conversation, memory. Nestled in the heart of Clifton, our dining room is a quiet rebellion against the ordinary.</p>
+          <p class="body-text">Every plate that leaves our kitchen carries the labour of chefs who trained across Paris, Tokyo, and Istanbul — returning home to Karachi with techniques that honour the world without abandoning its roots.</p>
+          <div style="margin-top:2rem">
+            <button class="btn-gold" onclick="showPage('about')">Our Story</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="home-features">
+    <div class="container">
+      <div class="features-header">
+        <p class="eyebrow">The Experience</p>
+        <h2 class="display">More than a meal</h2>
+        <div class="gold-line center"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feat-card">
+          <span class="feat-icon">🕯</span>
+          <div class="feat-title">Intimate Ambiance</div>
+          <p class="feat-body">Forty seats. Candlelight. A room designed for conversation rather than performance. Every detail — from the acoustics to the linen — is chosen to let the evening breathe.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">👨‍🍳</span>
+          <div class="feat-title">Chef's Table</div>
+          <p class="feat-body">Six seats at the pass. Watch each course composed in real time by our executive chef. The menu changes nightly — a conversation between the kitchen and the season.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🍷</span>
+          <div class="feat-title">Curated Cellar</div>
+          <p class="feat-body">Over 800 labels spanning five continents. Our sommelier crafts pairings that elevate each dish. Non-alcoholic pairings receive equal attention and artistry.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="home-cta">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center">Reserve</p>
+      <h2 class="display" style="text-align:center">Begin your evening<br>with <em style="font-family:'Cormorant Garant',serif;color:var(--gold)">Velour</em></h2>
+      <div class="gold-line center"></div>
+      <p class="body-text" style="text-align:center;max-width:500px;margin:0 auto 2.5rem">We seat guests Tuesday through Sunday, from 7 PM onwards. Reservations are held for fifteen minutes. For parties above six, please call us directly.</p>
+      <div style="text-align:center">
+        <button class="btn-solid" onclick="showPage('reserve')">Reserve Your Table</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo" style="cursor:default">Velour</span>
+          <p>A fine dining experience in the heart of Clifton, Karachi. Forty covers. One story every evening.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('menu')">Menu</a></li>
+            <li><a onclick="showPage('about')">About</a></li>
+            <li><a onclick="showPage('gallery')">Gallery</a></li>
+            <li><a onclick="showPage('reserve')">Reserve</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Experience</div>
+          <ul class="footer-links">
+            <li><a href="#">Chef's Table</a></li>
+            <li><a href="#">Private Dining</a></li>
+            <li><a href="#">Wine Pairing</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-col-title">Contact</div>
+          <p>12-C, Sunset Boulevard<br>Clifton Block 9, Karachi<br><br>+92 21 3456 7890<br>hello@velour.pk<br><br>Tue – Sun &nbsp;·&nbsp; 7 PM – 12 AM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2024 Velour Fine Dining, Karachi. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="#">in</a>
+          <a href="#">fb</a>
+          <a href="#">tw</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 — MENU
+═══════════════════════════════════════ -->
+<div class="page" id="page-menu">
+  <div class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Seasonal Selection</p>
+      <h1 class="display" style="font-size:clamp(3rem,7vw,5.5rem)">Our Menu</h1>
+      <div class="gold-line center"></div>
+      <p class="body-text" style="max-width:520px;margin:0 auto">Our menu changes with the season and the market. Everything on this page reflects tonight's offering, prepared fresh each afternoon.</p>
+    </div>
+  </div>
+
+  <div class="menu-page">
+    <div class="container">
+      <div class="menu-tabs-wrap">
+        <button class="menu-tab active" onclick="switchTab(this,'starters')">Starters</button>
+        <button class="menu-tab" onclick="switchTab(this,'mains')">Main Course</button>
+        <button class="menu-tab" onclick="switchTab(this,'desserts')">Desserts</button>
+        <button class="menu-tab" onclick="switchTab(this,'beverages')">Beverages</button>
+        <button class="menu-tab" onclick="switchTab(this,'tasting')">Tasting Menu</button>
+      </div>
+
+      <!-- Starters -->
+      <div class="menu-panel active" id="tab-starters">
+        <p class="menu-intro">Each starter is designed to awaken the palate — light, precise, and rooted in the season's finest produce.</p>
+        <div class="dishes-grid">
+          <div class="dish"><div><div class="dish-name">Saffron Bisque</div><div class="dish-desc">Slow-drawn lobster broth, fennel oil, caviar pearls, toasted brioche croutons</div><span class="dish-tag">Signature</span></div><div class="dish-price">Rs 2,800</div></div>
+          <div class="dish"><div><div class="dish-name">Burrata Imperiale</div><div class="dish-desc">Hand-pulled burrata, heirloom tomato, aged balsamic, wild micro basil</div></div><div class="dish-price">Rs 2,400</div></div>
+          <div class="dish"><div><div class="dish-name">Foie Gras Terrine</div><div class="dish-desc">Duck liver parfait, Melba brioche toast, mango-ginger compote</div><span class="dish-tag">Chef's Pick</span></div><div class="dish-price">Rs 3,600</div></div>
+          <div class="dish"><div><div class="dish-name">Truffle Arancini</div><div class="dish-desc">Black truffle risotto ball, aged parmesan, house romesco sauce</div></div><div class="dish-price">Rs 2,200</div></div>
+          <div class="dish"><div><div class="dish-name">Wagyu Carpaccio</div><div class="dish-desc">A5 wagyu paper-thin, lemon zest, capers, shaved grana padano, micro rocket</div><span class="dish-tag">Premium</span></div><div class="dish-price">Rs 4,800</div></div>
+          <div class="dish"><div><div class="dish-name">Scallop Ceviche</div><div class="dish-desc">Tiger's milk, avocado mousse, crispy quinoa, lime pearls, shiso</div></div><div class="dish-price">Rs 3,200</div></div>
+        </div>
+      </div>
+
+      <!-- Mains -->
+      <div class="menu-panel" id="tab-mains">
+        <p class="menu-intro">Main courses are the soul of the Velour kitchen — unhurried preparations built on classical technique and local instinct.</p>
+        <div class="dishes-grid">
+          <div class="dish"><div><div class="dish-name">Beef Wellington</div><div class="dish-desc">Australian tenderloin, mushroom duxelles, golden pastry, Madeira jus</div><span class="dish-tag">Signature</span></div><div class="dish-price">Rs 8,500</div></div>
+          <div class="dish"><div><div class="dish-name">Pan-Seared Halibut</div><div class="dish-desc">Wild-caught halibut, cauliflower purée, saffron beurre blanc, samphire</div></div><div class="dish-price">Rs 6,200</div></div>
+          <div class="dish"><div><div class="dish-name">Lamb Rack Provençal</div><div class="dish-desc">Herb-crusted New Zealand lamb, ratatouille, rosemary jus, potato gratin</div><span class="dish-tag">Chef's Pick</span></div><div class="dish-price">Rs 7,800</div></div>
+          <div class="dish"><div><div class="dish-name">Truffle Risotto</div><div class="dish-desc">Carnaroli rice, black truffle, aged parmesan, white truffle oil, chives</div></div><div class="dish-price">Rs 5,400</div></div>
+          <div class="dish"><div><div class="dish-name">Duck Confit</div><div class="dish-desc">48-hour duck leg, cherry gastrique, butter-braised cabbage, celeriac</div></div><div class="dish-price">Rs 6,800</div></div>
+          <div class="dish"><div><div class="dish-name">Wagyu Striploin</div><div class="dish-desc">A5 wagyu MB8+, bone marrow butter, truffle pomme purée, red wine reduction</div><span class="dish-tag">Premium</span></div><div class="dish-price">Rs 14,500</div></div>
+        </div>
+      </div>
+
+      <!-- Desserts -->
+      <div class="menu-panel" id="tab-desserts">
+        <p class="menu-intro">Our pastry chef approaches dessert as a final letter — unhurried, precise, and always with something unexpected.</p>
+        <div class="dishes-grid">
+          <div class="dish"><div><div class="dish-name">Valrhona Soufflé</div><div class="dish-desc">Dark chocolate soufflé 72%, crème anglaise, gold leaf, Tahitian vanilla</div><span class="dish-tag">Signature</span></div><div class="dish-price">Rs 2,400</div></div>
+          <div class="dish"><div><div class="dish-name">Citrus Tart</div><div class="dish-desc">Yuzu curd, mandarin gelée, Italian meringue, candied zest</div></div><div class="dish-price">Rs 1,900</div></div>
+          <div class="dish"><div><div class="dish-name">Crème Brûlée</div><div class="dish-desc">Tahitian vanilla, Demerara crust, seasonal berry compote</div></div><div class="dish-price">Rs 1,800</div></div>
+          <div class="dish"><div><div class="dish-name">Cheese Selection</div><div class="dish-desc">Three seasonal cheeses, honeycomb, Marcona almonds, quince paste</div></div><div class="dish-price">Rs 2,600</div></div>
+          <div class="dish"><div><div class="dish-name">Mango Millefeuille</div><div class="dish-desc">Caramelised Sindhi mango, puff pastry, mascarpone, rose water cream</div><span class="dish-tag">Seasonal</span></div><div class="dish-price">Rs 2,100</div></div>
+          <div class="dish"><div><div class="dish-name">Petit Fours</div><div class="dish-desc">A selection of hand-crafted chocolates and confections from our kitchen</div></div><div class="dish-price">Rs 1,400</div></div>
+        </div>
+      </div>
+
+      <!-- Beverages -->
+      <div class="menu-panel" id="tab-beverages">
+        <p class="menu-intro">Our beverage programme spans rare imports to house-pressed juices. Each drink is selected to complement rather than compete.</p>
+        <div class="dishes-grid">
+          <div class="dish"><div><div class="dish-name">Saffron Lemonade</div><div class="dish-desc">House-pressed lemon, Persian saffron, basil syrup, sparkling water</div><span class="dish-tag">House Special</span></div><div class="dish-price">Rs 850</div></div>
+          <div class="dish"><div><div class="dish-name">Rose Water Mocktail</div><div class="dish-desc">Rose distillate, lychee, elderflower cordial, sparkling Himalayan water</div></div><div class="dish-price">Rs 950</div></div>
+          <div class="dish"><div><div class="dish-name">Velour Old Fashioned</div><div class="dish-desc">Barrel-aged bitters, Demerara, orange peel, smoked cedar</div><span class="dish-tag">Signature</span></div><div class="dish-price">Rs 2,200</div></div>
+          <div class="dish"><div><div class="dish-name">Imported Water</div><div class="dish-desc">Acqua Panna still or S.Pellegrino sparkling, per bottle</div></div><div class="dish-price">Rs 600</div></div>
+          <div class="dish"><div><div class="dish-name">Ceremonial Matcha</div><div class="dish-desc">Grade A Japanese matcha, oat milk, maple, served warm or iced</div></div><div class="dish-price">Rs 1,100</div></div>
+          <div class="dish"><div><div class="dish-name">Single Origin Coffee</div><div class="dish-desc">Ethiopian Yirgacheffe, espresso, filter, or cold brew on request</div></div><div class="dish-price">Rs 900</div></div>
+        </div>
+      </div>
+
+      <!-- Tasting -->
+      <div class="menu-panel" id="tab-tasting">
+        <p class="menu-intro">The Velour Tasting Menu is a seven-course journey curated by our executive chef. Available for the entire table only, with 48-hour advance reservation.</p>
+        <div class="dishes-grid">
+          <div class="dish"><div><div class="dish-name">Amuse-Bouche</div><div class="dish-desc">Three bite-sized morsels from the chef — changes daily with the market</div></div><div class="dish-price">—</div></div>
+          <div class="dish"><div><div class="dish-name">First Course</div><div class="dish-desc">Seasonal cold preparation: oyster, caviar, or chilled seafood composition</div></div><div class="dish-price">—</div></div>
+          <div class="dish"><div><div class="dish-name">Second Course</div><div class="dish-desc">Warm soup or velouté — our saffron bisque in extended form</div></div><div class="dish-price">—</div></div>
+          <div class="dish"><div><div class="dish-name">Third Course</div><div class="dish-desc">Fish or crustacean: halibut, turbot, or lobster depending on the season</div></div><div class="dish-price">—</div></div>
+          <div class="dish"><div><div class="dish-name">Fourth Course</div><div class="dish-desc">Meat: wagyu, lamb, or duck in their finest seasonal preparation</div></div><div class="dish-price">—</div></div>
+          <div class="dish"><div><div class="dish-name">Pre-Dessert & Dessert</div><div class="dish-desc">Palate cleanser followed by chef's signature dessert creation</div></div><div class="dish-price">—</div></div>
+        </div>
+        <div class="menu-note">
+          <p>The complete tasting menu is priced at <span>Rs 18,500 per person</span>. Beverage pairing (non-alcoholic) available for an additional <span>Rs 4,500</span>. Please notify us of any dietary requirements at the time of reservation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer same -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><span class="nav-logo" style="cursor:default">Velour</span><p>A fine dining experience in the heart of Clifton, Karachi. Forty covers. One story every evening.</p></div>
+        <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('menu')">Menu</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('gallery')">Gallery</a></li><li><a onclick="showPage('reserve')">Reserve</a></li></ul></div>
+        <div><div class="footer-col-title">Experience</div><ul class="footer-links"><li><a href="#">Chef's Table</a></li><li><a href="#">Private Dining</a></li><li><a href="#">Wine Pairing</a></li><li><a href="#">Events</a></li></ul></div>
+        <div class="footer-contact"><div class="footer-col-title">Contact</div><p>12-C, Sunset Boulevard<br>Clifton Block 9, Karachi<br><br>+92 21 3456 7890<br>hello@velour.pk<br><br>Tue – Sun · 7 PM – 12 AM</p></div>
+      </div>
+      <div class="footer-bottom"><span class="footer-copy">&copy; 2024 Velour Fine Dining, Karachi.</span><div class="footer-socials"><a href="#">in</a><a href="#">fb</a><a href="#">tw</a></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 3 — ABOUT
+═══════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-page">
+    <!-- Hero -->
+    <div class="about-hero">
+      <div class="container">
+        <div class="about-hero-grid">
+          <div>
+            <p class="eyebrow">Our Story</p>
+            <div class="about-quote">"To cook is to give — to dine at Velour is to <span>receive</span> without condition."</div>
+            <div class="gold-line" style="margin-top:2rem"></div>
+          </div>
+          <div class="about-hero-right">
+            <p class="body-text">Velour opened in 2012 in a narrow townhouse on Sunset Boulevard. There were twelve seats, one oven, and a head chef who had spent seven years in Lyon. The reservation book was full within a week.</p>
+            <p class="body-text" style="margin-top:0.8rem">Twelve years later we occupy the entire building. The oven has multiplied. But the conviction remains unchanged: forty guests, one sitting, nothing between the kitchen and you but intention.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story timeline -->
+    <div class="story-section">
+      <div class="container">
+        <p class="eyebrow">Timeline</p>
+        <h2 class="display">How we got here</h2>
+        <div class="gold-line"></div>
+        <div class="story-grid">
+          <div class="story-sidebar">
+            <p class="eyebrow">Select a year</p>
+            <ul class="story-year-list">
+              <li class="active" onclick="switchYear(this,'y2012')">2012</li>
+              <li onclick="switchYear(this,'y2015')">2015</li>
+              <li onclick="switchYear(this,'y2018')">2018</li>
+              <li onclick="switchYear(this,'y2021')">2021</li>
+              <li onclick="switchYear(this,'y2024')">2024</li>
+            </ul>
+          </div>
+          <div>
+            <div class="story-entry active" id="y2012"><div class="story-entry-year">2012</div><div class="story-entry-title">A narrow door opens</div><div class="story-entry-body">Chef Reza Malik returns from Lyon and opens Velour in a twelve-seat townhouse. The menu is handwritten each morning. The reservation book fills before the paint dries. Word travels faster than any advertisement.</div></div>
+            <div class="story-entry" id="y2015"><div class="story-entry-year">2015</div><div class="story-entry-title">The cellar is born</div><div class="story-entry-body">Sommelier Sara Naqvi joins the team, transforming a basement storeroom into a 400-label wine cellar. The first formal pairing menu launches — four courses, four pours. The table is no longer just about food.</div></div>
+            <div class="story-entry" id="y2018"><div class="story-entry-year">2018</div><div class="story-entry-title">Expansion with restraint</div><div class="story-entry-body">Velour acquires the adjacent property, growing to forty seats — but refusing to add a second sitting. "We would rather turn people away than rush them," Chef Malik tells Dawn. Three private dining rooms open.</div></div>
+            <div class="story-entry" id="y2021"><div class="story-entry-year">2021</div><div class="story-entry-title">The Chef's Table arrives</div><div class="story-entry-body">Six seats are placed at the pass. The nightly tasting menu debuts. In its first year, the Chef's Table is booked six weeks in advance on average. It is now the most requested experience in the house.</div></div>
+            <div class="story-entry" id="y2024"><div class="story-entry-year">2024</div><div class="story-entry-title">Twelve years of intention</div><div class="story-entry-body">Velour turns twelve. The cellar holds 800 labels. The team numbers 34. The menu is still written by hand. A second location is proposed, discussed, and quietly declined. One restaurant, done properly, is enough.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="team-section">
+      <div class="container">
+        <div class="team-header">
+          <p class="eyebrow">The Team</p>
+          <h2 class="display">The people behind the plate</h2>
+          <div class="gold-line center"></div>
+        </div>
+        <div class="team-grid">
+          <div class="team-card"><div class="team-avatar">R</div><div class="team-name">Reza Malik</div><div class="team-role">Executive Chef & Founder</div><div class="team-bio">Trained in Lyon and Tokyo. Returned to Karachi with a single question: what does home taste like when it has seen the world? Every menu is his answer.</div></div>
+          <div class="team-card"><div class="team-avatar">S</div><div class="team-name">Sara Naqvi</div><div class="team-role">Head Sommelier</div><div class="team-bio">WSET Diploma. Spent four years sourcing across the Rhône, Burgundy, and Rioja valleys. Believes the right glass changes the entire conversation at the table.</div></div>
+          <div class="team-card"><div class="team-avatar">A</div><div class="team-name">Aisha Farooq</div><div class="team-role">Pastry Chef</div><div class="team-bio">Trained at Le Cordon Bleu Paris. Approaches dessert as the final punctuation of an evening — not a full stop, but an ellipsis that lingers into the drive home.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="values-section">
+      <div class="container">
+        <p class="eyebrow">What we believe</p>
+        <h2 class="display">Four commitments</h2>
+        <div class="gold-line"></div>
+        <div class="values-grid">
+          <div class="value-item"><div class="value-num">I</div><div class="value-title">Restraint over excess</div><div class="value-body">Forty seats is not a limitation. It is a decision. We would rather do one thing extraordinarily than many things adequately.</div></div>
+          <div class="value-item"><div class="value-num">II</div><div class="value-title">Seasonality above all</div><div class="value-body">The menu bends to the market, not the other way around. When mangoes peak, the kitchen stops and listens. When they're gone, we move on.</div></div>
+          <div class="value-item"><div class="value-num">III</div><div class="value-title">The guest is always present</div><div class="value-body">We remember your preferences. We notice when you're celebrating. The dining room is yours for the evening; we are simply its caretakers.</div></div>
+          <div class="value-item"><div class="value-num">IV</div><div class="value-title">No compromise on craft</div><div class="value-body">The stock takes 48 hours. The pasta is rolled each afternoon. The bread is baked twice. These things take time. That is the point.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><span class="nav-logo" style="cursor:default">Velour</span><p>A fine dining experience in the heart of Clifton, Karachi. Forty covers. One story every evening.</p></div>
+        <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('menu')">Menu</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('gallery')">Gallery</a></li><li><a onclick="showPage('reserve')">Reserve</a></li></ul></div>
+        <div><div class="footer-col-title">Experience</div><ul class="footer-links"><li><a href="#">Chef's Table</a></li><li><a href="#">Private Dining</a></li><li><a href="#">Wine Pairing</a></li><li><a href="#">Events</a></li></ul></div>
+        <div class="footer-contact"><div class="footer-col-title">Contact</div><p>12-C, Sunset Boulevard<br>Clifton Block 9, Karachi<br><br>+92 21 3456 7890<br>hello@velour.pk<br><br>Tue – Sun · 7 PM – 12 AM</p></div>
+      </div>
+      <div class="footer-bottom"><span class="footer-copy">&copy; 2024 Velour Fine Dining, Karachi.</span><div class="footer-socials"><a href="#">in</a><a href="#">fb</a><a href="#">tw</a></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 4 — GALLERY
+═══════════════════════════════════════ -->
+<div class="page" id="page-gallery">
+  <div class="gallery-page">
+    <div class="gallery-hero">
+      <div class="container">
+        <p class="eyebrow">Visual Diary</p>
+        <h1 class="display" style="font-size:clamp(3rem,7vw,5.5rem)">Gallery</h1>
+        <div class="gold-line center"></div>
+        <p class="body-text" style="max-width:480px;margin:0 auto">A glimpse into our kitchen, our dining room, and the moments that make each evening at Velour unrepeatable.</p>
+      </div>
+    </div>
+
+    <div class="gallery-grid-wrap">
+      <div class="container">
+        <div class="gallery-filter">
+          <button class="gf-btn active" onclick="filterGallery(this,'all')">All</button>
+          <button class="gf-btn" onclick="filterGallery(this,'food')">Food</button>
+          <button class="gf-btn" onclick="filterGallery(this,'interior')">Interior</button>
+          <button class="gf-btn" onclick="filterGallery(this,'kitchen')">Kitchen</button>
+          <button class="gf-btn" onclick="filterGallery(this,'events')">Events</button>
+        </div>
+        <div class="gallery-masonry" id="galleryGrid">
+          <!-- items injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><span class="nav-logo" style="cursor:default">Velour</span><p>A fine dining experience in the heart of Clifton, Karachi. Forty covers. One story every evening.</p></div>
+        <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('menu')">Menu</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('gallery')">Gallery</a></li><li><a onclick="showPage('reserve')">Reserve</a></li></ul></div>
+        <div><div class="footer-col-title">Experience</div><ul class="footer-links"><li><a href="#">Chef's Table</a></li><li><a href="#">Private Dining</a></li><li><a href="#">Wine Pairing</a></li></ul></div>
+        <div class="footer-contact"><div class="footer-col-title">Contact</div><p>12-C, Sunset Boulevard<br>Clifton Block 9, Karachi<br><br>+92 21 3456 7890<br>hello@velour.pk<br><br>Tue – Sun · 7 PM – 12 AM</p></div>
+      </div>
+      <div class="footer-bottom"><span class="footer-copy">&copy; 2024 Velour Fine Dining, Karachi.</span><div class="footer-socials"><a href="#">in</a><a href="#">fb</a><a href="#">tw</a></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 5 — RESERVE
+═══════════════════════════════════════ -->
+<div class="page" id="page-reserve">
+  <div class="reserve-page">
+    <div class="reserve-hero">
+      <div class="container">
+        <p class="eyebrow">Reservations</p>
+        <h1 class="display" style="font-size:clamp(3rem,7vw,5.5rem)">Book Your Evening</h1>
+        <div class="gold-line center"></div>
+        <p class="body-text" style="max-width:500px;margin:0 auto">We welcome guests Tuesday through Sunday, from 7 PM. Reservations are essential and held for fifteen minutes past the stated arrival time.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="reserve-layout">
+        <!-- Info -->
+        <div class="reserve-info">
+          <p class="eyebrow">Before You Arrive</p>
+          <h2 class="display" style="font-size:2.2rem">What to know</h2>
+          <div class="gold-line"></div>
+          <p class="body-text">We seat forty guests each evening across our main dining room and three private dining rooms. The experience is unhurried — please allow three hours for a full meal.</p>
+          <p class="body-text" style="margin-top:0.8rem">For parties of six or more, dietary requirements, or private dining enquiries, please contact us directly.</p>
+          <div class="info-items">
+            <div class="info-item"><span class="info-icon">📍</span><div><div class="info-label">Location</div><div class="info-val">12-C, Sunset Boulevard, Clifton Block 9<br><span>Karachi, Pakistan</span></div></div></div>
+            <div class="info-item"><span class="info-icon">🕯</span><div><div class="info-label">Hours</div><div class="info-val">Tuesday – Sunday<br><span>Dinner from 7:00 PM · Last seating 9:30 PM</span></div></div></div>
+            <div class="info-item"><span class="info-icon">📞</span><div><div class="info-label">Phone</div><div class="info-val">+92 21 3456 7890<br><span>Available 12 PM – 10 PM daily</span></div></div></div>
+            <div class="info-item"><span class="info-icon">✉️</span><div><div class="info-label">Email</div><div class="info-val">hello@velour.pk<br><span>Replies within 2 hours during service hours</span></div></div></div>
+            <div class="info-item"><span class="info-icon">👔</span><div><div class="info-label">Dress Code</div><div class="info-val">Smart Casual to Formal<br><span>We ask that guests dress in keeping with the occasion</span></div></div></div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <div class="res-card">
+            <div class="res-card-title">Reservation Details</div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">First Name</label><input class="form-field" type="text" placeholder="Fatima" id="rf-first"/></div>
+              <div class="form-group"><label class="form-label">Last Name</label><input class="form-field" type="text" placeholder="Qureshi" id="rf-last"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Email Address</label><input class="form-field" type="email" placeholder="fatima@example.com" id="rf-email"/></div>
+              <div class="form-group"><label class="form-label">Phone Number</label><input class="form-field" type="tel" placeholder="+92 3XX XXXXXXX" id="rf-phone"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Date</label><input class="form-field" type="date" id="rf-date"/></div>
+              <div class="form-group"><label class="form-label">Preferred Time</label>
+                <select class="form-field" id="rf-time">
+                  <option value="" disabled selected>Select time</option>
+                  <option>7:00 PM</option><option>7:30 PM</option><option>8:00 PM</option>
+                  <option>8:30 PM</option><option>9:00 PM</option><option>9:30 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Number of Guests</label>
+                <select class="form-field" id="rf-guests">
+                  <option value="" disabled selected>Select guests</option>
+                  <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
+                  <option>4 Guests</option><option>5 Guests</option>
+                </select>
+              </div>
+              <div class="form-group"><label class="form-label">Occasion</label>
+                <select class="form-field" id="rf-occasion">
+                  <option value="" disabled selected>Select occasion</option>
+                  <option>None</option><option>Anniversary</option><option>Birthday</option>
+                  <option>Business Dinner</option><option>Proposal</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-group"><label class="form-label">Special Requests or Dietary Notes</label>
+                <textarea class="form-field" rows="3" placeholder="Allergies, dietary requirements, special arrangements..." id="rf-notes" style="resize:none;height:auto"></textarea>
+              </div>
+            </div>
+            <button class="form-submit" onclick="submitReservation()">Confirm Reservation</button>
+            <p class="form-note">By confirming, you agree to our <a href="#">cancellation policy</a>. Reservations may be cancelled up to 24 hours in advance without charge.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Private dining strip -->
+      <div class="private-strip">
+        <div class="container">
+          <div style="text-align:center;margin-bottom:3rem">
+            <p class="eyebrow">Private Dining</p>
+            <h2 class="display" style="font-size:2rem">For larger occasions</h2>
+            <div class="gold-line center"></div>
+            <p class="body-text" style="max-width:480px;margin:0 auto">Our three private rooms accommodate two to twenty-two guests. Each is dressed separately for every event. Contact us directly to arrange.</p>
+          </div>
+          <div class="private-inner">
+            <div class="private-item"><div class="private-item-num">3</div><div class="private-item-label">Private Rooms</div></div>
+            <div class="private-item"><div class="private-item-num">2–22</div><div class="private-item-label">Guest Capacity</div></div>
+            <div class="private-item"><div class="private-item-num">100%</div><div class="private-item-label">Customisable Menu</div></div>
+          </div>
+          <div style="text-align:center;margin-top:2.5rem">
+            <a href="tel:+922134567890" class="btn-gold">Call +92 21 3456 7890</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><span class="nav-logo" style="cursor:default">Velour</span><p>A fine dining experience in the heart of Clifton, Karachi. Forty covers. One story every evening.</p></div>
+        <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('menu')">Menu</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('gallery')">Gallery</a></li><li><a onclick="showPage('reserve')">Reserve</a></li></ul></div>
+        <div><div class="footer-col-title">Experience</div><ul class="footer-links"><li><a href="#">Chef's Table</a></li><li><a href="#">Private Dining</a></li><li><a href="#">Wine Pairing</a></li></ul></div>
+        <div class="footer-contact"><div class="footer-col-title">Contact</div><p>12-C, Sunset Boulevard<br>Clifton Block 9, Karachi<br><br>+92 21 3456 7890<br>hello@velour.pk<br><br>Tue – Sun · 7 PM – 12 AM</p></div>
+      </div>
+      <div class="footer-bottom"><span class="footer-copy">&copy; 2024 Velour Fine Dining, Karachi.</span><div class="footer-socials"><a href="#">in</a><a href="#">fb</a><a href="#">tw</a></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <div class="lb-content" onclick="event.stopPropagation()">
+    <div class="lb-visual" id="lbVisual"></div>
+    <div class="lb-title" id="lbTitle"></div>
+    <div class="lb-sub" id="lbSub"></div>
+  </div>
+</div>
+
+<!-- Success modal -->
+<div class="success-modal" id="successModal">
+  <div class="success-box">
+    <div class="success-icon">✦</div>
+    <div class="success-title">Reservation Requested</div>
+    <div class="success-body">Thank you. Our team will confirm your reservation via email within the hour. We look forward to welcoming you to Velour.</div>
+    <button class="btn-gold success-close" onclick="closeSuccess()">Close</button>
+  </div>
+</div>
+
+<script>
+/* ─── PAGE NAVIGATION ─── */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    l.classList.toggle('active', l.dataset.page===id);
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(l=>{
+    l.classList.toggle('active', l.dataset.mpage===id);
+  });
+  window.scrollTo({top:0,behavior:'instant'});
+  if(id==='gallery') buildGallery('all');
+}
+
+/* ─── MOBILE MENU ─── */
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
+function closeMobile(){mobileMenu.classList.remove('open')}
+
+/* ─── MENU TABS ─── */
+function switchTab(btn,id){
+  document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+/* ─── STORY YEARS ─── */
+function switchYear(li,id){
+  document.querySelectorAll('.story-year-list li').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.story-entry').forEach(e=>e.classList.remove('active'));
+  li.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+/* ─── GALLERY ─── */
+const galleryItems=[
+  {cat:'food',  label:'Wagyu Carpaccio',   sub:'Kitchen · 2024', icon:'🥩'},
+  {cat:'interior',label:'The Main Room',   sub:'Interior · Evening', icon:'🕯'},
+  {cat:'food',  label:'Saffron Bisque',    sub:'Kitchen · 2024', icon:'🦞'},
+  {cat:'kitchen',label:'The Pass',         sub:'Behind the scenes', icon:'👨‍🍳'},
+  {cat:'food',  label:'Valrhona Soufflé',  sub:'Pastry · 2024', icon:'🍫'},
+  {cat:'interior',label:'Private Room I',  sub:'Interior', icon:'🌹'},
+  {cat:'events',label:'NYE Celebration',   sub:'Events · Dec 2023', icon:'✦'},
+  {cat:'kitchen',label:'Morning Prep',     sub:'Kitchen · 5 AM', icon:'🔪'},
+  {cat:'food',  label:'Foie Gras Terrine', sub:'Kitchen · 2024', icon:'🦆'},
+  {cat:'interior',label:'Chef\'s Table',   sub:'Interior', icon:'🪑'},
+  {cat:'events',label:'Anniversary Dinner',sub:'Events · 2024', icon:'🥂'},
+  {cat:'food',  label:'Citrus Tart',       sub:'Pastry · 2024', icon:'🍋'},
+];
+
+function buildGallery(filter){
+  const grid=document.getElementById('galleryGrid');
+  const items=filter==='all'?galleryItems:galleryItems.filter(i=>i.cat===filter);
+  grid.innerHTML=items.map((item,i)=>`
+    <div class="g-item" onclick="openLightbox('${item.label}','${item.sub}','${item.icon}')">
+      <div class="g-item-inner">${item.icon}</div>
+      <div class="g-overlay">
+        <div><div class="g-cat">${item.cat}</div><div class="g-label">${item.label}</div></div>
+      </div>
+    </div>`).join('');
+}
+
+function filterGallery(btn,cat){
+  document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildGallery(cat);
+}
+
+function openLightbox(title,sub,icon){
+  document.getElementById('lbVisual').innerHTML=icon;
+  document.getElementById('lbTitle').textContent=title;
+  document.getElementById('lbSub').textContent=sub;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+
+/* ─── RESERVATION ─── */
+function submitReservation(){
+  const fields=['rf-first','rf-last','rf-email','rf-date','rf-time','rf-guests'];
+  const empty=fields.some(id=>!document.getElementById(id).value);
+  if(empty){alert('Please fill in all required fields.');return;}
+  document.getElementById('successModal').classList.add('open');
+}
+function closeSuccess(){
+  document.getElementById('successModal').classList.remove('open');
+  ['rf-first','rf-last','rf-email','rf-phone','rf-date','rf-notes'].forEach(id=>{document.getElementById(id).value=''});
+  ['rf-time','rf-guests','rf-occasion'].forEach(id=>{document.getElementById(id).selectedIndex=0});
+}
+
+/* ─── INIT ─── */
+buildGallery('all');
+</script>
+</body>
+</html>
